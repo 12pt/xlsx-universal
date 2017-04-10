@@ -1,0 +1,11 @@
+* xlsx-universal
+
+xlsx-universal allows the user to convert an XLSX workbook into a JavaScript array, or "universal object" to put it hyperbolically.
+
+The idea is formulated from the classic quote:
+
+#+BEGIN_QUOTE
+"It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures." -- Alan Perlis
+#+END_QUOTE
+
+Simply call =XLSXUniversal.Converter.convert(wb)= to use it, where =wb= is an XLSX workbook object.

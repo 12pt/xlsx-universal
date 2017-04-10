@@ -1,0 +1,13 @@
+{
+  "name": "universal-ob",
+  "version": "1.0.0",
+  "description": "Convert xlsx workbooks into JS arrays",
+  "author": "12pt",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/xlsx": "0.0.33",
+    "browserify": "^14.3.0",
+    "tsify": "^3.0.1",
+    "typescript": "^2.2.2"
+  }
+}

@@ -9,3 +9,5 @@ The idea is formulated from the classic quote:
 #+END_QUOTE
 
 Simply call =XLSXUniversal.Converter.convert(wb)= to use it, where =wb= is an XLSX workbook object.
+
+The object returned is an array of sheets. Each sheet is a 2D array.

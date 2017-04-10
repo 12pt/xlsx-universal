@@ -19,3 +19,5 @@ You can set =XLSXUniversal.Converter.keepEmptySheets= to =true= if you want to k
 ** Returned Object
 
 The object returned is a map of sheets, with the key being the sheet's name. Accessing the value at the key will return a 2D array representing the worksheet.
+
+The index of the elements corresponds to its position in the spreadsheet. Empty cells will be ignored. This means if you have for example a row with information in the first two cells, and information in the 8th cell, the array will have indexes 0 1 and 6 assigned to the cell's content.

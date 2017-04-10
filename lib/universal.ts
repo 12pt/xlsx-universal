@@ -39,7 +39,7 @@ export class Converter {
      * Converts e.g. A -> 26, AA -> 27, and so on.
      * @param {string} col the column identifier to convert to an index.
      */
-    private static coltonumber(col: string) {
+    private static colToNumber(col: string) {
         let result = 0;
 
         for (let i = 0, j = col.length - 1; i < col.length; i++ , j--) {
@@ -51,6 +51,7 @@ export class Converter {
 
     /**
      * Convert a single sheet into a JS array, where the rows and columns are sync'd with the spreadsheets'.
+     * @param {IWorkSheet} xlsobj a single worksheet from a workbook to be Array-ified.
      */
     private static sheetToArray(xlsobj: IWorkSheet): IUniversalObject {
         let spreadsheet = new Array<any>();
@@ -64,7 +65,7 @@ export class Converter {
                         col = col[0];
 
                         // need to convert column names to numbers (i.e. A to 1, AA to 27, etc)
-                        let colnum: number = Converter.coltonumber(col);
+                        let colnum: number = Converter.colToNumber(col);
                         let rownum: number = Number(row);
 
                         colnum -= 1;

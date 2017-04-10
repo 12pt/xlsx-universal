@@ -1,4 +1,13 @@
 import { IWorkSheet, IWorkBook } from "xlsx";
+
+export interface IUniversalObject extends Array<any> {
+    [index: number]: Array<any>;
+}
+
+export interface IUniversalObjectContainer {
+    [sheet: string]: IUniversalObject;
+}
+
 /**
  * XLSX WorkBook -> "Universal Object"
  * Given an xlsx workbook object, this library will convert it to a simple js array.
@@ -6,20 +15,24 @@ import { IWorkSheet, IWorkBook } from "xlsx";
  */
 export class Converter {
     static readonly alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    static keepEmptySheets = false;
 
     /**
      * Convert a workbook into a representative js object. Allows you KISS.
      * @param {any} worksheet the worksheet to convert.
      */
-    public static convert(worksheet: IWorkBook): any[][][] {
-        let sheets = [];
+    public static convert(worksheet: IWorkBook): IUniversalObjectContainer {
+        let sheets: IUniversalObjectContainer = {};
+
         for (let sheet of worksheet.SheetNames) {
-            sheets.push(worksheet.Sheets[sheet]);
+            let converted = Converter.sheetToArray(worksheet.Sheets[sheet]);
+
+            if (converted.length > 0 || Converter.keepEmptySheets) {
+                sheets[sheet] = converted;
+            }
         }
-        // get rid of empty sheets
-        return sheets.map(Converter.sheetToArray).filter(function(arr) {
-            return arr.length > 0;
-        });
+
+        return sheets;
     }
 
     /**
@@ -39,7 +52,7 @@ export class Converter {
     /**
      * Convert a single sheet into a JS array, where the rows and columns are sync'd with the spreadsheets'.
      */
-    private static sheetToArray(xlsobj: IWorkSheet): Array<Array<any>> {
+    private static sheetToArray(xlsobj: IWorkSheet): IUniversalObject {
         let spreadsheet = new Array<any>();
         for (let key in xlsobj) {
             if (xlsobj.hasOwnProperty(key) && key.indexOf("!") < 0) {

@@ -14,15 +14,15 @@ var Converter = (function () {
      * @param {any} worksheet the worksheet to convert.
      */
     Converter.convert = function (worksheet) {
-        var sheets = [];
+        var sheets = {};
         for (var _i = 0, _a = worksheet.SheetNames; _i < _a.length; _i++) {
             var sheet = _a[_i];
-            sheets.push(worksheet.Sheets[sheet]);
+            var converted = Converter.sheetToArray(worksheet.Sheets[sheet]);
+            if (converted.length > 0 || Converter.keepEmptySheets) {
+                sheets[sheet] = converted;
+            }
         }
-        // get rid of empty sheets
-        return sheets.map(Converter.sheetToArray).filter(function (arr) {
-            return arr.length > 0;
-        });
+        return sheets;
     };
     /**
      * Converts e.g. A -> 26, AA -> 27, and so on.
@@ -69,6 +69,7 @@ var Converter = (function () {
     return Converter;
 }());
 Converter.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+Converter.keepEmptySheets = false;
 exports.Converter = Converter;
 
 },{}]},{},[1])(1)

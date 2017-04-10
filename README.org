@@ -8,6 +8,14 @@ The idea is formulated from the classic quote:
 "It is better to have 100 functions operate on one data structure than 10 functions on 10 data structures." -- Alan Perlis
 #+END_QUOTE
 
+** Usage
+
 Simply call =XLSXUniversal.Converter.convert(wb)= to use it, where =wb= is an XLSX workbook object.
 
-The object returned is an array of sheets. Each sheet is a 2D array.
+** Options
+
+You can set =XLSXUniversal.Converter.keepEmptySheets= to =true= if you want to keep the empty sheets in the workbook. It is =false= by default.
+
+** Returned Object
+
+The object returned is a map of sheets, with the key being the sheet's name. Accessing the value at the key will return a 2D array representing the worksheet.

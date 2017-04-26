@@ -25,10 +25,10 @@ var Converter = (function () {
         return sheets;
     };
     /**
-     * Converts e.g. A -> 26, AA -> 27, and so on.
+     * Converts e.g. A -> 1, Z -> 26, AA -> 27, and so on.
      * @param {string} col the column identifier to convert to an index.
      */
-    Converter.coltonumber = function (col) {
+    Converter.colToNumber = function (col) {
         var result = 0;
         for (var i = 0, j = col.length - 1; i < col.length; i++, j--) {
             result += Math.pow(26, j) * (Converter.alphabet.indexOf(col[i]) + 1);
@@ -37,6 +37,7 @@ var Converter = (function () {
     };
     /**
      * Convert a single sheet into a JS array, where the rows and columns are sync'd with the spreadsheets'.
+     * @param {IWorkSheet} xlsobj a single worksheet from a workbook to be Array-ified.
      */
     Converter.sheetToArray = function (xlsobj) {
         var spreadsheet = new Array();
@@ -49,7 +50,7 @@ var Converter = (function () {
                         row = row[0];
                         col = col[0];
                         // need to convert column names to numbers (i.e. A to 1, AA to 27, etc)
-                        var colnum = Converter.coltonumber(col);
+                        var colnum = Converter.colToNumber(col);
                         var rownum = Number(row);
                         colnum -= 1;
                         rownum -= 1;
@@ -71,6 +72,7 @@ var Converter = (function () {
 Converter.alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 Converter.keepEmptySheets = false;
 exports.Converter = Converter;
+exports.default = Converter;
 
 },{}]},{},[1])(1)
 });

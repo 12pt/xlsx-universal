@@ -5,8 +5,12 @@
   "author": "12pt",
   "license": "MIT",
   "devDependencies": {
+    "@types/chai": "^3.5.1",
+    "@types/mocha": "^2.2.41",
     "@types/xlsx": "0.0.33",
     "browserify": "^14.3.0",
+    "chai": "^3.5.0",
+    "ts-node": "^3.0.2",
     "tsify": "^3.0.1",
     "typescript": "^2.2.2"
   }

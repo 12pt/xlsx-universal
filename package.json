@@ -4,6 +4,9 @@
   "description": "Convert xlsx workbooks into JS arrays",
   "author": "12pt",
   "license": "MIT",
+  "scripts": {
+      "test": "mocha -r ts-node/register ./test/test.ts"
+  },
   "devDependencies": {
     "@types/chai": "^3.5.1",
     "@types/mocha": "^2.2.41",

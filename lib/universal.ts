@@ -36,10 +36,10 @@ export class Converter {
     }
 
     /**
-     * Converts e.g. A -> 26, AA -> 27, and so on.
+     * Converts e.g. A -> 1, Z -> 26, AA -> 27, and so on.
      * @param {string} col the column identifier to convert to an index.
      */
-    private static colToNumber(col: string) {
+    public static colToNumber(col: string) {
         let result = 0;
 
         for (let i = 0, j = col.length - 1; i < col.length; i++ , j--) {
@@ -84,3 +84,5 @@ export class Converter {
         return spreadsheet;
     }
 }
+
+export default Converter;
